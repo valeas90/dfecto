@@ -1,4 +1,4 @@
-defmodule Dfecto.LiveLayer.Schemas.Screen do
+defmodule Dfecto.Schemas.LiveLayer.Screen do
   @moduledoc """
   The screen schema for livelayer
   """
@@ -62,7 +62,7 @@ defmodule Dfecto.LiveLayer.Schemas.Screen do
     field :type, :string
     field :enabled, :boolean
 
-    belongs_to :layer, Dfecto.LiveLayer.Schemas.Layer
+    belongs_to :layer, Dfecto.Schemas.LiveLayer.Layer
 
     timestamps()
   end
@@ -103,7 +103,7 @@ defmodule Dfecto.LiveLayer.Schemas.Screen do
   end
 
   @spec base :: Ecto.Query.t()
-  def base, do: __MODULE__
+  def base, do: from(screen in __MODULE__)
 
   @spec for_layer(Ecto.Query.t(), integer) :: Ecto.Query.t()
   def for_layer(query \\ base(), layer_id) do

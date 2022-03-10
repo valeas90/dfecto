@@ -1,4 +1,4 @@
-defmodule Dfecto.LiveLayer.Schemas.Installation do
+defmodule Dfecto.Schemas.LiveLayer.Installation do
   @moduledoc """
   The installation schema for livelayer
   """
@@ -34,7 +34,7 @@ defmodule Dfecto.LiveLayer.Schemas.Installation do
     field :config, :map, default: %{}
     field :name, :string
 
-    belongs_to :layer, Dfecto.LiveLayer.Schemas.Layer
+    belongs_to :layer, Dfecto.Schemas.LiveLayer.Layer
 
     timestamps()
   end

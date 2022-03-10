@@ -1,4 +1,4 @@
-defmodule Dfecto.LiveLayer.Schemas.Screen.Params.Classic do
+defmodule Dfecto.Schemas.LiveLayer.Screen.Params.Classic do
   @moduledoc false
 
   use Ecto.Schema

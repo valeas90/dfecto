@@ -1,4 +1,4 @@
-defmodule Dfecto.LiveLayer.Schemas.Screen.Params.Fullscreen do
+defmodule Dfecto.Schemas.LiveLayer.Screen.Params.Fullscreen do
   @moduledoc false
 
   use Ecto.Schema

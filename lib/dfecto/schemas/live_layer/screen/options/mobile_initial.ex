@@ -1,4 +1,4 @@
-defmodule Dfecto.LiveLayer.Schemas.Screen.Options.MobileInitial do
+defmodule Dfecto.Schemas.LiveLayer.Screen.Options.MobileInitial do
   @moduledoc false
 
   use Ecto.Schema

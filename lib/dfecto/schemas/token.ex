@@ -1,4 +1,4 @@
-defmodule Dfecto.Token do
+defmodule Dfecto.Schemas.Token do
   @moduledoc """
   The Token schema.
   """

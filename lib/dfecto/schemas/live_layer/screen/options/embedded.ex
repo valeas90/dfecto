@@ -1,4 +1,4 @@
-defmodule Dfecto.LiveLayer.Schemas.Screen.Options.Embedded do
+defmodule Dfecto.Schemas.LiveLayer.Screen.Options.Embedded do
   @moduledoc false
 
   use Ecto.Schema

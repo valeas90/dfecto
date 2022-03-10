@@ -1,4 +1,4 @@
-defmodule Dfecto.LiveLayer.Schemas.Screen.Options do
+defmodule Dfecto.Schemas.LiveLayer.Screen.Options do
   @moduledoc """
   `Options` module handles the schemas available for `Screen` options field.
 

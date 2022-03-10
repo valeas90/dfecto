@@ -1,4 +1,4 @@
-defmodule Dfecto.LiveLayer.Schemas.Screen.Params do
+defmodule Dfecto.Schemas.LiveLayer.Screen.Params do
   @moduledoc """
   `Params` module handles the schemas available for `Screen` parameters field.
 

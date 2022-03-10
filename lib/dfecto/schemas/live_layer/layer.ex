@@ -1,4 +1,4 @@
-defmodule Dfecto.LiveLayer.Schemas.Layer do
+defmodule Dfecto.Schemas.LiveLayer.Layer do
   @moduledoc """
   The layer schema for livelayer
   """
@@ -133,8 +133,8 @@ defmodule Dfecto.LiveLayer.Schemas.Layer do
     field :translations, :map, default: %{}
     field :type, :string
 
-    has_many :installation, Dfecto.LiveLayer.Schemas.Installation
-    has_many :screen, Dfecto.LiveLayer.Schemas.Screen
+    has_many :installation, Dfecto.Schemas.LiveLayer.Installation
+    has_many :screen, Dfecto.Schemas.LiveLayer.Screen
 
     timestamps()
   end
@@ -195,7 +195,7 @@ defmodule Dfecto.LiveLayer.Schemas.Layer do
     do: {:error, :invalid_type}
 
   @spec base :: Ecto.Query.t()
-  def base, do: __MODULE__
+  def base, do: from(layer in __MODULE__)
 
   @spec for_account(Ecto.Query.t(), pos_integer) :: Ecto.Query.t()
   def for_account(query \\ base(), account_id) do

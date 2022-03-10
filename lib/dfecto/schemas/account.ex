@@ -1,4 +1,4 @@
-defmodule Dfecto.Account do
+defmodule Dfecto.Schemas.Account do
   @moduledoc """
   The Account schema.
   """

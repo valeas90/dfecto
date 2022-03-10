@@ -1,4 +1,4 @@
-defmodule Dfecto.User.Schema do
+defmodule Dfecto.Schemas.User do
   @moduledoc """
   The User schema.
   """
