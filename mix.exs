@@ -21,7 +21,7 @@ defmodule Dfecto.MixProject do
           steps: [:assemble, &copy_extra_files/1]
         ]
       ],
-      version: "0.1.0"
+      version: "0.1.1"
     ]
   end
 
