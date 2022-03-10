@@ -119,10 +119,10 @@ defmodule Dfecto.LiveLayer.Schemas.Screen do
   @spec params_fields :: [:autofilters, ...]
   def params_fields, do: @params_fields
 
-  @spec base :: Screen
+  @spec base :: Ecto.Query.t()
   def base, do: Screen
 
-  @spec for_layer(Screen, integer) :: Ecto.Query.t()
+  @spec for_layer(Ecto.Query.t(), integer) :: Ecto.Query.t()
   def for_layer(query \\ base(), layer_id) do
     where(query, [d], d.layer_id == ^layer_id)
   end
