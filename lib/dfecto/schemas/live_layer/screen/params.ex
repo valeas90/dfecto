@@ -17,7 +17,7 @@ defmodule Dfecto.LiveLayer.Schemas.Screen.Params do
   import Ecto.Changeset,
     only: [add_error: 3, apply_changes: 1, cast: 3, get_change: 2, get_field: 2, put_change: 3]
 
-  alias Dfecto.LiveLayer.Schemas.Screen.Params
+  alias Dfecto.Schemas.LiveLayer.Screen.Params
   alias Ecto.Changeset
 
   @type_params %{

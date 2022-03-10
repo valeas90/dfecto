@@ -7,8 +7,8 @@ defmodule Dfecto.Account do
 
   import Ecto.Changeset
 
-  alias Dfecto.Token
-  alias Dfecto.User
+  alias Dfecto.Schemas.Token
+  alias Dfecto.Schemas.User
 
   @required_fields [:code]
   @code_regex ~r/^[a-f0-9]{30}$/

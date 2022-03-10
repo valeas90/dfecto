@@ -7,8 +7,8 @@ defmodule Dfecto.Token do
 
   import Ecto.Changeset
 
-  alias Dfecto.Account
-  alias Dfecto.User
+  alias Dfecto.Schemas.Account
+  alias Dfecto.Schemas.User
   alias Dfecto.Utils
 
   @fields [:name, :key, :created, :internal, :is_owner, :account_id, :user_id]

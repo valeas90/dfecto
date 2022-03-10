@@ -12,7 +12,7 @@ defmodule Dfecto.LiveLayer.Schemas.Screen.Options do
   import Ecto.Changeset,
     only: [add_error: 3, apply_changes: 1, cast: 3, get_field: 2, put_change: 3]
 
-  alias Dfecto.LiveLayer.Schemas.Screen.Options
+  alias Dfecto.Schemas.LiveLayer.Screen.Options
   alias Ecto.Changeset
 
   @type_options %{

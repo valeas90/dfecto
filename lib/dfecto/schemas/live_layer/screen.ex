@@ -8,7 +8,7 @@ defmodule Dfecto.LiveLayer.Schemas.Screen do
   import Ecto.Changeset
   import Ecto.Query
 
-  alias Dfecto.LiveLayer.Schemas.Screen
+  alias Dfecto.Schemas.LiveLayer.Screen
 
   @fields [
     :layer_id,
