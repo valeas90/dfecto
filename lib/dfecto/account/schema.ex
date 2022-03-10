@@ -123,8 +123,8 @@ defmodule Dfecto.Account.Schema do
     field :using_layer_v9, :boolean, default: false
     field :plan_version, :integer, default: 1
 
-    has_many :tokens, TokenSchema
-    has_many :users, UserSchema
+    has_many :tokens, Token
+    has_many :users, User
   end
 
   @doc false
