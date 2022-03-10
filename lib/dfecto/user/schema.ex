@@ -7,9 +7,9 @@ defmodule Dfecto.User.Schema do
 
   import Ecto.Changeset
 
+  alias Dfecto.AuthGroup.Schema, as: AuthGroupSchema
   alias Dfecto.DfRegions
   alias Dfecto.Token.Schema, as: TokenSchema
-  alias Dfecto.AuthGroup.Schema, as: AuthGroupSchema
   alias Dfecto.Utils
 
   @fields [
