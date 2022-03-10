@@ -1,4 +1,4 @@
-defmodule Doomanager.Schemas.SearchEngine do
+defmodule Dfecto.Schemas.SearchEngine do
   @moduledoc """
   The Search Engine schema
   """

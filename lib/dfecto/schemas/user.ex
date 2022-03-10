@@ -7,6 +7,7 @@ defmodule Dfecto.Schemas.User do
 
   import Ecto.Changeset
 
+  alias Dfecto.Schemas.Account
   alias Dfecto.Schemas.AuthGroup
   alias Dfecto.Schemas.Token
   alias Dfecto.Utils
@@ -81,7 +82,7 @@ defmodule Dfecto.Schemas.User do
     field :login_token, :string
     field :max_api_keys, :integer, default: 10
 
-    belongs_to :account, Doomanager.Accounts.Account
+    belongs_to :account, Account
     has_many :tokens, Token, on_delete: :delete_all
 
     many_to_many(:groups, AuthGroup,
