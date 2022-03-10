@@ -1,4 +1,4 @@
-defmodule Dfecto.EctoUtils.ListField do
+defmodule Dfecto.Utils.Ecto.ListField do
   @moduledoc """
   Ecto field to store list inside a text field in database (json format)
   """

@@ -1,4 +1,4 @@
-defmodule Dfecto.EctoUtils.ListMapField do
+defmodule Dfecto.Utils.Ecto.ListMapField do
   @moduledoc """
   Ecto field to store a list of maps inside a text field in database (json format)
   """

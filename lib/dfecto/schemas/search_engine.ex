@@ -7,7 +7,7 @@ defmodule Doomanager.SearchEngines do
 
   import Ecto.Changeset
 
-  alias Dfecto.EctoUtils.ListField
+  alias Dfecto.Utils.Ecto.ListField
 
   @valid_search_zones ["eu1", "us1"]
   @valid_languages [
