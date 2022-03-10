@@ -9,8 +9,8 @@ defmodule Dfecto.Account.Schema do
 
   import Ecto.Changeset
 
-  alias Dfecto.Token.Schema, as: TokenSchema
-  alias Dfecto.User.Schema, as: UserSchema
+  alias Dfecto.Token.Schema, as: Token
+  alias Dfecto.User.Schema, as: User
 
   @required_fields [:code]
   @code_regex ~r/^[a-f0-9]{30}$/

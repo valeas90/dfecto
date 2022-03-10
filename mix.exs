@@ -54,6 +54,7 @@ defmodule Dfecto.MixProject do
       {:httpoison, "~> 1.8"},
       {:jason, "~> 1.2"},
       {:myxql, ">= 0.0.0"},
+      {:pbkdf2_elixir, "~> 1.4"},
       {:plug_cowboy, "~> 2.5"},
       {:postgrex, ">= 0.0.0"},
       {:remote_ip, "~> 1.0"},

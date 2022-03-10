@@ -4,12 +4,12 @@ defmodule Dfecto.LiveLayer.Context do
   """
   import Ecto.Query, warn: false
 
-  alias Doomanager.LiveLayer.Installation
-  alias Doomanager.LiveLayer.Layer
+  alias Doomanager.LiveLayer.Context.Installation
+  alias Doomanager.LiveLayer.Context.Layer
   alias Doomanager.LiveLayer.Schemas.Installation, as: InstallationSchema
   alias Doomanager.LiveLayer.Schemas.Layer, as: LayerSchema
   alias Doomanager.LiveLayer.Schemas.Screen, as: ScreenSchema
-  alias Doomanager.LiveLayer.Screen
+  alias Doomanager.LiveLayer.Context.Screen
 
   @cdn_prefix "https://cdn.doofinder.com/livelayer/1"
 

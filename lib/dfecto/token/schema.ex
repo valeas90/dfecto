@@ -7,8 +7,8 @@ defmodule Dfecto.Token.Schema do
 
   import Ecto.Changeset
 
-  alias Dfecto.Account.Schema, as: AccountSchema
-  alias Dfecto.User.Schema, as: UserSchema
+  alias Dfecto.Account.Schema, as: Account
+  alias Dfecto.User.Schema, as: User
   alias Dfecto.Utils
 
   @fields [:name, :key, :created, :internal, :is_owner, :account_id, :user_id]
@@ -30,8 +30,8 @@ defmodule Dfecto.Token.Schema do
     field :internal, :boolean, default: false
     field :is_owner, :boolean, default: false
 
-    belongs_to :account, AccountSchema
-    belongs_to :user, UserSchema
+    belongs_to :account, Account
+    belongs_to :user, User
   end
 
   @doc false
