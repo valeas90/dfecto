@@ -31,7 +31,7 @@ defmodule Dfecto.MixProject do
   def application do
     [
       mod: {Dfecto.Application, []},
-      extra_applications: [:logger, :os_mon, :runtime_tools]
+      extra_applications: [:logger]
     ]
   end
 
