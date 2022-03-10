@@ -6,6 +6,7 @@ defmodule Dfecto.LiveLayer.Schemas.Layer do
   use Ecto.Schema
 
   import Ecto.Changeset
+  import Ecto.Query
 
   @fields [
     :account_id,
@@ -197,4 +198,12 @@ defmodule Dfecto.LiveLayer.Schemas.Layer do
 
   def screens_by_type(_),
     do: {:error, :invalid_type}
+
+  @spec base :: Ecto.Query.t()
+  def base, do: __MODULE__
+
+  @spec for_account(Ecto.Query.t(), pos_integer) :: Ecto.Query.t()
+  def for_account(query \\ base(), account_id) do
+    where(query, [d], d.account_id == ^account_id)
+  end
 end
