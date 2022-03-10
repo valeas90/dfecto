@@ -34,7 +34,7 @@ defmodule Dfecto.LiveLayer.Schemas.Installation do
     field :config, :map, default: %{}
     field :name, :string
 
-    belongs_to :layer, Doomanager.LiveLayer.Schemas.Layer
+    belongs_to :layer, Dfecto.LiveLayer.Schemas.Layer
 
     timestamps()
   end

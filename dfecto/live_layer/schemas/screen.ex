@@ -7,8 +7,8 @@ defmodule Dfecto.LiveLayer.Schemas.Screen do
 
   import Ecto.Changeset
 
-  alias Doomanager.LiveLayer.Schemas.Screen.Options
-  alias Doomanager.LiveLayer.Schemas.Screen.Params
+  alias Dfecto.LiveLayer.Schemas.Screen.Options
+  alias Dfecto.LiveLayer.Schemas.Screen.Params
 
   @options_fields [:min_capture_length, :latest_searches]
   @params_fields [:autofilters]
@@ -65,7 +65,7 @@ defmodule Dfecto.LiveLayer.Schemas.Screen do
     field :type, :string
     field :enabled, :boolean
 
-    belongs_to :layer, Doomanager.LiveLayer.Schemas.Layer
+    belongs_to :layer, Dfecto.LiveLayer.Schemas.Layer
 
     timestamps()
   end

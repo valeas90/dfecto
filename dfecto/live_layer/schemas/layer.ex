@@ -134,8 +134,8 @@ defmodule Dfecto.LiveLayer.Schemas.Layer do
     field :translations, :map, default: %{}
     field :type, :string
 
-    has_many :installation, Doomanager.LiveLayer.Schemas.Installation
-    has_many :screen, Doomanager.LiveLayer.Schemas.Screen
+    has_many :installation, Dfecto.LiveLayer.Schemas.Installation
+    has_many :screen, Dfecto.LiveLayer.Schemas.Screen
 
     timestamps()
   end
