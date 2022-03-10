@@ -9,8 +9,8 @@ defmodule Dfecto.Account.Schema do
 
   import Ecto.Changeset
 
-  alias Dfecto.MyTokens.MyToken
-  alias Dfecto.Users.User
+  alias Dfecto.Token.Schema, as: TokenSchema
+  alias Dfecto.User.Schema, as: UserSchema
 
   @required_fields [:code]
   @code_regex ~r/^[a-f0-9]{30}$/
@@ -123,8 +123,8 @@ defmodule Dfecto.Account.Schema do
     field :using_layer_v9, :boolean, default: false
     field :plan_version, :integer, default: 1
 
-    has_many :tokens, MyToken
-    has_many :users, User
+    has_many :tokens, TokenSchema
+    has_many :users, UserSchema
   end
 
   @doc false

@@ -8,8 +8,8 @@ defmodule Dfecto.User.Schema do
   import Ecto.Changeset
 
   alias Dfecto.DfRegions
-  alias Dfecto.MyTokens.MyToken
-  alias Dfecto.Users.AuthGroup
+  alias Dfecto.Token.Schema, as: TokenSchema
+  alias Dfecto.AuthGroup.Schema, as: AuthGroupSchema
   alias Dfecto.Utils
 
   @fields [
@@ -61,7 +61,7 @@ defmodule Dfecto.User.Schema do
           language: binary,
           login_token: binary,
           account_id: integer,
-          groups: list(AuthGroup.t())
+          groups: list(AuthGroupSchema.t())
         }
 
   schema "users_doofinderuser" do
@@ -83,9 +83,9 @@ defmodule Dfecto.User.Schema do
     field :max_api_keys, :integer, default: 10
 
     belongs_to :account, Doomanager.Accounts.Account
-    has_many :tokens, MyToken, on_delete: :delete_all
+    has_many :tokens, TokenSchema, on_delete: :delete_all
 
-    many_to_many(:groups, AuthGroup,
+    many_to_many(:groups, AuthGroupSchema,
       join_through: "users_doofinderuser_groups",
       join_keys: [doofinderuser_id: :id, group_id: :id]
     )
