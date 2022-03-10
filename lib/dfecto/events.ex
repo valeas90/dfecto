@@ -2,6 +2,7 @@ defmodule Dfecto.Events do
   @moduledoc """
   Module used to trigger events.
   """
+
   alias Dfecto.LiveLayer.Schemas.Installation
   alias Dfecto.LiveLayer.Schemas.Layer
   alias Dfecto.LiveLayer.Schemas.Screen
