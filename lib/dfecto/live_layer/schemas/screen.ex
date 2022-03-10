@@ -6,9 +6,9 @@ defmodule Dfecto.LiveLayer.Schemas.Screen do
   use Ecto.Schema
 
   import Ecto.Changeset
+  import Ecto.Query
 
-  alias Dfecto.LiveLayer.Schemas.Screen.Options
-  alias Dfecto.LiveLayer.Schemas.Screen.Params
+  alias Dfecto.LiveLayer.Schemas.Screen
 
   @options_fields [:min_capture_length, :latest_searches]
   @params_fields [:autofilters]
@@ -101,8 +101,8 @@ defmodule Dfecto.LiveLayer.Schemas.Screen do
     screen
     |> cast(attrs, @fields)
     |> validate_required(@required_fields)
-    |> Options.cast_embed()
-    |> Params.cast_embed()
+    |> Screen.Options.cast_embed()
+    |> Screen.Params.cast_embed()
   end
 
   @spec get_type(binary) :: binary | nil
@@ -118,4 +118,12 @@ defmodule Dfecto.LiveLayer.Schemas.Screen do
 
   @spec params_fields :: [:autofilters, ...]
   def params_fields, do: @params_fields
+
+  @spec base :: Screen
+  def base, do: Screen
+
+  @spec for_layer(Screen, integer) :: Ecto.Query.t()
+  def for_layer(query \\ base(), layer_id) do
+    where(query, [d], d.layer_id == ^layer_id)
+  end
 end
