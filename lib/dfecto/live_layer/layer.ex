@@ -23,8 +23,6 @@ defmodule Dfecto.LiveLayer.Schemas.Layer do
     :type
   ]
 
-  @options_fields_per_device [:availability_card, :discount_card, :add_to_cart_button]
-
   @layer_types %{
     "TYPE_A" => %{
       screens: [
@@ -188,9 +186,6 @@ defmodule Dfecto.LiveLayer.Schemas.Layer do
   @spec editable?(t()) :: boolean
   def editable?(%__MODULE__{} = layer),
     do: is_map_key(@layer_types, layer.type)
-
-  @spec options_fields_per_device :: list
-  def options_fields_per_device, do: @options_fields_per_device
 
   @spec screens_by_type(binary) :: {:ok, [map]} | {:error, :invalid_type}
   def screens_by_type(type) when is_map_key(@layer_types, type),

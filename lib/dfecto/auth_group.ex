@@ -1,4 +1,4 @@
-defmodule Dfecto.Users.AuthGroup do
+defmodule Dfecto.AuthGroup do
   @moduledoc """
   The AuthGroup schema.
   """

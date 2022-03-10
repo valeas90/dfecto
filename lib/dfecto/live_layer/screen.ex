@@ -10,9 +10,6 @@ defmodule Dfecto.LiveLayer.Schemas.Screen do
 
   alias Dfecto.LiveLayer.Schemas.Screen
 
-  @options_fields [:min_capture_length, :latest_searches]
-  @params_fields [:autofilters]
-
   @fields [
     :layer_id,
     :order,
@@ -104,20 +101,6 @@ defmodule Dfecto.LiveLayer.Schemas.Screen do
     |> Screen.Options.cast_embed()
     |> Screen.Params.cast_embed()
   end
-
-  @spec get_type(binary) :: binary | nil
-  def get_type("Elixir.LayerWeb.Layers.FullscreenInitial"), do: "initial"
-  def get_type("Elixir.LayerWeb.Layers.Fullscreen"), do: "results"
-  def get_type("Elixir.LayerWeb.Layers.MobileInitial"), do: "initial"
-  def get_type("Elixir.LayerWeb.Layers.Mobile"), do: "results"
-  def get_type("Elixir.LayerWeb.Layers.Classic"), do: "results"
-  def get_type(_), do: nil
-
-  @spec options_fields :: [:min_capture_length, ...]
-  def options_fields, do: @options_fields
-
-  @spec params_fields :: [:autofilters, ...]
-  def params_fields, do: @params_fields
 
   @spec base :: Ecto.Query.t()
   def base, do: __MODULE__

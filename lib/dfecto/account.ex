@@ -1,16 +1,14 @@
-defmodule Dfecto.Account.Schema do
+defmodule Dfecto.Account do
   @moduledoc """
   The Account schema.
-
-  TODO: Clean up account fields, many of them are useless.
   """
 
   use Ecto.Schema
 
   import Ecto.Changeset
 
-  alias Dfecto.Token.Schema, as: Token
-  alias Dfecto.User.Schema, as: User
+  alias Dfecto.Token
+  alias Dfecto.User
 
   @required_fields [:code]
   @code_regex ~r/^[a-f0-9]{30}$/
@@ -150,7 +148,7 @@ defmodule Dfecto.Account.Schema do
 
   @spec generate_currency() :: binary
   def generate_currency do
-    case Application.get_env(:doomanager, :aws_doof_zone) do
+    case Application.get_env(:dfecto, :aws_doof_zone) do
       "eu1" -> "EUR"
       "us1" -> "USD"
     end

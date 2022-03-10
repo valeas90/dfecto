@@ -1,4 +1,4 @@
-defmodule Dfecto.Token.Schema do
+defmodule Dfecto.Token do
   @moduledoc """
   The Token schema.
   """
@@ -7,8 +7,8 @@ defmodule Dfecto.Token.Schema do
 
   import Ecto.Changeset
 
-  alias Dfecto.Account.Schema, as: Account
-  alias Dfecto.User.Schema, as: User
+  alias Dfecto.Account
+  alias Dfecto.User
   alias Dfecto.Utils
 
   @fields [:name, :key, :created, :internal, :is_owner, :account_id, :user_id]

@@ -7,9 +7,8 @@ defmodule Dfecto.User.Schema do
 
   import Ecto.Changeset
 
-  alias Dfecto.AuthGroup.Schema, as: AuthGroup
-  alias Dfecto.DfRegions
-  alias Dfecto.Token.Schema, as: Token
+  alias Dfecto.AuthGroup
+  alias Dfecto.Token
   alias Dfecto.Utils
 
   @fields [
@@ -104,7 +103,6 @@ defmodule Dfecto.User.Schema do
       message: "This email address already exists."
     )
     |> update_change(:email, &String.downcase/1)
-    |> check_zone()
     |> update_change(:password, &Pbkdf2.hash_pwd_salt(&1, format: :django, digest: :sha256))
   end
 
@@ -123,7 +121,6 @@ defmodule Dfecto.User.Schema do
       message: "This email address already exists."
     )
     |> update_change(:email, &String.downcase/1)
-    |> check_zone()
   end
 
   @doc """
@@ -148,16 +145,5 @@ defmodule Dfecto.User.Schema do
   @spec update_changeset(Ecto.Schema.t(), map) :: Ecto.Changeset.t()
   def update_changeset(user, attrs) do
     cast(user, attrs, @update_field)
-  end
-
-  @spec check_zone(Ecto.Changeset.t()) :: Ecto.Changeset.t()
-  def check_zone(changeset) do
-    email = get_field(changeset, :email)
-    zone = Application.get_env(:doomanager, :aws_doof_zone)
-
-    case DfRegions.in_this_region(email, zone) do
-      {:ok, _user} -> add_error(changeset, :email, "This email address already exists.")
-      _ -> changeset
-    end
   end
 end
