@@ -1,49 +1,45 @@
-defmodule Dfecto.LiveLayer.Screens do
+defmodule Dfecto.LiveLayer.Contexts.Screens do
   @moduledoc """
   Context for LiveLayer's screens.
   """
   import Ecto.Query, warn: false
+  import Dfecto.Repo, only: [repo: 0]
 
-  alias Doomanager.Events
-  alias Doomanager.LiveLayer.Layer
-  alias Doomanager.LiveLayer.Queries.Screen, as: ScreenQuery
-  alias Doomanager.LiveLayer.Schemas.Layer, as: LayerSchema
-  alias Doomanager.LiveLayer.Schemas.Screen, as: ScreenSchema
-  alias Doomanager.Repo
+  alias Dfecto.Events
+  alias Dfecto.LiveLayer.Contexts.Layers
+  alias Dfecto.LiveLayer.Schemas.Layer
+  alias Dfecto.LiveLayer.Schemas.Screen
 
   @doc """
   Returns the list of screen.
   """
-  @spec list :: [ScreenSchema.t()]
-  def list, do: Repo.all(ScreenSchema)
+  @spec list(Ecto.Repo.t()) :: [Screen.t()]
+  def list(r \\ repo()), do: r.all(Screen)
 
   @doc """
   Gets a single screen.
 
   Raises `Ecto.NoResultsError` if the New screen does not exist.
   """
-  @spec get!(pos_integer) :: ScreenSchema.t()
-  def get!(id), do: Repo.get!(ScreenSchema, id)
+  @spec get!(Ecto.Repo.t(), pos_integer) :: Screen.t()
+  def get!(r \\ repo(), id), do: r.get!(Screen, id)
 
   @doc """
   Get the screens assosicated with a layer
   """
-  @spec get_layer_screens(pos_integer()) :: [ScreenSchema.t()]
+  @spec get_layer_screens(Ecto.Repo.t(), pos_integer()) :: [Screen.t()]
   def get_layer_screens(layer_id) do
     layer_id
     |> ScreenQuery.for_layer()
-    |> Repo.all()
+    |> r.all()
   end
 
-  @doc """
-  Creates a screen.
-  """
-  @spec create(map) :: {:ok, ScreenSchema.t()} | {:error, Ecto.Changeset.t() | any()}
+  @doc """ScreenSchema
   def create(attrs \\ %{}) do
     attrs =
       with {:ok, layer_id} <- Map.fetch(attrs, :layer_id),
            {:ok, device} <- Map.fetch(attrs, :device),
-           %LayerSchema{options: layer_options} <- Layer.get(layer_id),
+           %Layer{options: layer_options} <- Layer.get(layer_id),
            %{^device => options_for_device} <- layer_options do
         screen_options = Map.get(attrs, :options, %{})
         merged_options = Map.merge(screen_options, options_for_device)
@@ -55,8 +51,8 @@ defmodule Dfecto.LiveLayer.Screens do
 
     Repo.transaction(fn ->
       created_screen =
-        %ScreenSchema{}
-        |> ScreenSchema.changeset(attrs)
+        %Screen{}
+        |> Screen.changeset(attrs)
         |> Repo.insert()
 
       with {:ok, screen} <- created_screen,
@@ -72,13 +68,13 @@ defmodule Dfecto.LiveLayer.Screens do
   @doc """
   Updates a screen.
   """
-  @spec update(ScreenSchema.t(), map) ::
-          {:ok, ScreenSchema.t()} | {:error, Ecto.Changeset.t() | any()}
-  def update(%ScreenSchema{} = screen, attrs) do
+  @spec update(Screen.t(), map) ::
+          {:ok, Screen.t()} | {:error, Ecto.Changeset.t() | any()}
+  def update(%Screen{} = screen, attrs) do
     Repo.transaction(fn ->
       updated_screen =
         screen
-        |> ScreenSchema.changeset(attrs)
+        |> Screen.changeset(attrs)
         |> Repo.update()
 
       with {:ok, screen} <- updated_screen,
@@ -94,8 +90,8 @@ defmodule Dfecto.LiveLayer.Screens do
   @doc """
   Deletes a screen.
   """
-  @spec delete(ScreenSchema.t()) :: {:ok, ScreenSchema.t()} | {:error, Ecto.Changeset.t() | any()}
-  def delete(%ScreenSchema{} = screen) do
+  @spec delete(Screen.t()) :: {:ok, Screen.t()} | {:error, Ecto.Changeset.t() | any()}
+  def delete(%Screen{} = screen) do
     Repo.transaction(fn ->
       with {:ok, screen} <- Repo.delete(screen),
            :ok <- Events.trigger_event(screen, :deleted) do
