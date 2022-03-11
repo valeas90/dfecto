@@ -103,7 +103,7 @@ defmodule Dfecto.Schemas.LiveLayer.Screen do
   end
 
   @spec base :: Ecto.Query.t()
-  def base, do: from(screen in __MODULE__)
+  def base, do: Ecto.Queryable.to_query(__MODULE__)
 
   @spec for_layer(Ecto.Query.t(), integer) :: Ecto.Query.t()
   def for_layer(query \\ base(), layer_id) do

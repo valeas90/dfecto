@@ -195,7 +195,7 @@ defmodule Dfecto.Schemas.LiveLayer.Layer do
     do: {:error, :invalid_type}
 
   @spec base :: Ecto.Query.t()
-  def base, do: from(layer in __MODULE__)
+  def base, do: Ecto.Queryable.to_query(__MODULE__)
 
   @spec for_account(Ecto.Query.t(), pos_integer) :: Ecto.Query.t()
   def for_account(query \\ base(), account_id) do

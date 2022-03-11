@@ -58,9 +58,7 @@ defmodule Dfecto.Schemas.Indices.DataType do
   end
 
   @spec base :: Ecto.Query.t()
-  def base do
-    from(dt in __MODULE__)
-  end
+  def base, do: Ecto.Queryable.to_query(__MODULE__)
 
   @doc """
   Reduces a query to return all DataTypes related to the search_engine_id passed by param
