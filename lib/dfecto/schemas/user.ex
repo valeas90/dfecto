@@ -92,8 +92,8 @@ defmodule Dfecto.Schemas.User do
   end
 
   @doc false
-  @spec changeset(Ecto.Schema.t(), map) :: Ecto.Changeset.t()
-  def changeset(user, attrs) do
+  @spec changeset(Ecto.Schema.t(), map, (String.t() -> boolean)) :: Ecto.Changeset.t()
+  def changeset(user, attrs, zone_checker?) do
     user
     |> cast(attrs, @fields)
     |> validate_required([:email, :password])
@@ -104,14 +104,15 @@ defmodule Dfecto.Schemas.User do
       message: "This email address already exists."
     )
     |> update_change(:email, &String.downcase/1)
+    |> validate_change(:email, &(check_zone(&1, &2, zone_checker?)))
     |> update_change(:password, &Pbkdf2.hash_pwd_salt(&1, format: :django, digest: :sha256))
   end
 
   @doc """
   Changeset for social logins that doesn't need password for the user creation
   """
-  @spec changeset_without_password(Ecto.Schema.t(), map) :: Ecto.Changeset.t()
-  def changeset_without_password(user, attrs) do
+  @spec changeset_without_password(Ecto.Schema.t(), map, (String.t() -> boolean)) :: Ecto.Changeset.t()
+  def changeset_without_password(user, attrs, zone_checker?) do
     user
     |> cast(attrs, @fields)
     |> validate_required([:email])
@@ -122,6 +123,7 @@ defmodule Dfecto.Schemas.User do
       message: "This email address already exists."
     )
     |> update_change(:email, &String.downcase/1)
+    |> validate_change(:email, &(check_zone(&1, &2, zone_checker?)))
   end
 
   @doc """
@@ -146,5 +148,14 @@ defmodule Dfecto.Schemas.User do
   @spec update_changeset(Ecto.Schema.t(), map) :: Ecto.Changeset.t()
   def update_changeset(user, attrs) do
     cast(user, attrs, @update_field)
+  end
+
+  @spec check_zone(atom, String.t(), (String.t() -> boolean)) :: [{atom, String.t()}]
+  def check_zone(key, email, zone_checker?) do
+    if zone_checker?.(email) do
+      [{key, "This email address already exists."}]
+    else
+      []
+    end
   end
 end
